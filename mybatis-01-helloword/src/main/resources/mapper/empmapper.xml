@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wx.mybatis01helloword.mapper.empmapper">
+
+
+
+    <select id="getid" resultType="com.wx.mybatis01helloword.bean.emp">
+        select id,emp_name name,age,emp_salary deptId
+            from t_emp where id=#{id}
+    </select>
+    <select id="getall" resultType="com.wx.mybatis01helloword.bean.emp">
+        select id,emp_name name,age,emp_salary deptId from t_emp
+    </select>
+
+    <insert id="addemp" useGeneratedKeys="true" keyProperty="id">
+        insert into t_emp(emp_name,age,emp_salary) values(#{name},#{age},#{deptId})
+    </insert>
+    <update id="updateemp">
+        update t_emp set emp_name=#{name},age=#{age},emp_salary=#{deptId} where id=#{id}
+    </update>
+    <delete id="deleteemp">
+        delete from t_emp  where id=#{id}
+    </delete>
+
+</mapper>

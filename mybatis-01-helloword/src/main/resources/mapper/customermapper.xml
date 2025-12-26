@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wx.mybatis01helloword.mapper.customermapper">
+
+
+    <resultMap id="customerRM" type="com.wx.mybatis01helloword.bean.customer">
+        <id column="c_id" property="id"></id>
+        <result column="customer_name" property="customerName"></result>
+        <result column="phone" property="phone"></result>
+
+
+        <collection property="orders" ofType="com.wx.mybatis01helloword.bean.order">
+            <id column="id" property="id"></id>
+            <result column="address" property="address"></result>
+            <result column="amount" property="amount"></result>
+            <result column="customer_id" property="customerId"></result>
+        </collection>
+    </resultMap>
+
+    <select id="getcustomeradnorder" resultMap="customerRM">
+        SELECT
+            c.id c_id ,
+            c.customer_name,
+            c.phone,
+            o.*
+            FROM t_customer c
+            LEFT JOIN t_order o
+            ON o.customer_id=c.id
+        WHERE c.id=#{id}
+    </select>
+</mapper>

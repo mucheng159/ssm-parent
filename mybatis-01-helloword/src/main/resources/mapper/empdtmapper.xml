@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wx.mybatis01helloword.mapper.empdtmapper">
+
+
+    <select id="findEmpByEmpno" resultType="com.wx.mybatis01helloword.bean.emp">
+        select * from   t_emp where
+                <if test="name != null">
+                    emp_name=#{name}
+                </if>
+                <if test="deptId != null">
+                    and emp_salary=#{deptId}
+                </if>
+    </select>
+    <select id="all" resultType="com.wx.mybatis01helloword.bean.emp">
+        select * from t_emp
+    </select>
+</mapper>
